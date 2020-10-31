@@ -1,4 +1,11 @@
 class SchedulesController < ApplicationController
+  def show
+    if schedule = Schedule.preload(:schedule_dates, :members).find_by(id: params[:id])
+      return render json: schedule.to_json(include: [:schedule_dates, :members])
+    end
+    render json: { message: "Not Found Error", errors: [] }, status: 404
+  end
+
   def create
     schedule = Schedule.new(title: params[:title])
 
