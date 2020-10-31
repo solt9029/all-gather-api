@@ -6,6 +6,6 @@ class CreateScheduleMemberScheduleDates < ActiveRecord::Migration[6.0]
       t.date :date, null: false
       t.timestamps
     end
-    add_index :schedule_member_schedule_dates, [:schedule_date_id, :member_id, :date], unique: true, name: 'index_schedule_member_schedule_dates'
+    add_index :schedule_member_schedule_dates, [:schedule_date_id, :schedule_member_id, :date], unique: true, name: 'index_schedule_member_schedule_dates'
   end
 end
