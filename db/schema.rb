@@ -28,10 +28,9 @@ ActiveRecord::Schema.define(version: 2020_10_11_042429) do
   create_table "schedule_member_schedule_dates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "schedule_date_id", null: false
     t.uuid "schedule_member_id", null: false
-    t.date "date", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["schedule_date_id", "schedule_member_id", "date"], name: "index_schedule_member_schedule_dates", unique: true
+    t.index ["schedule_date_id", "schedule_member_id"], name: "index_schedule_member_schedule_dates", unique: true
     t.index ["schedule_date_id"], name: "index_schedule_member_schedule_dates_on_schedule_date_id"
     t.index ["schedule_member_id"], name: "index_schedule_member_schedule_dates_on_schedule_member_id"
   end
