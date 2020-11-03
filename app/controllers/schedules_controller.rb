@@ -48,6 +48,6 @@ class SchedulesController < ApplicationController
         return render json: { message: "Validation Error", errors: schedule_member.errors.full_messages }, status: 400
       end
     end
-    render json: schedule.to_json
+    render json: schedule_member.to_json
   end
 end
