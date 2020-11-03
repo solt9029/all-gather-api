@@ -1,5 +1,5 @@
 class ScheduleMember < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   belongs_to :schedule
   has_many :schedule_member_schedule_dates

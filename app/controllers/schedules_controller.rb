@@ -14,6 +14,10 @@ class SchedulesController < ApplicationController
   end
 
   def create
+    if params[:dates].blank?
+      return render json: { message: "Validation Error", errors: ['日程を選択してください'] }, status: 400
+    end
+
     schedule = Schedule.new(title: params[:title])
     ActiveRecord::Base.transaction do
       if schedule.save
@@ -43,7 +47,9 @@ class SchedulesController < ApplicationController
             updated_at: current_time 
           }
         end
-        ScheduleMemberScheduleDate.insert_all!(schedule_member_schedule_dates)
+        if schedule_member_schedule_dates.present?
+          ScheduleMemberScheduleDate.insert_all!(schedule_member_schedule_dates) 
+        end
       else
         return render json: { message: "Validation Error", errors: schedule_member.errors.full_messages }, status: 400
       end
