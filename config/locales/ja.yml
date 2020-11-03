@@ -2,6 +2,6 @@ ja:
   activerecord:
     attributes:
       schedule:
-        title: イベント名
+        title: タイトル
       schedule_member:
         name: 名前
