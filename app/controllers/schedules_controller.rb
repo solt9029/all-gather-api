@@ -31,9 +31,23 @@ class SchedulesController < ApplicationController
 
   def answer
     schedule = Schedule.find(params[:id])
-
+    schedule_member = ScheduleMember.new(schedule_id: schedule.id, name: params[:name])
     ActiveRecord::Base.transaction do
-      
+      if schedule_member.save
+        current_time = Time.current
+        schedule_member_schedule_dates = params[:date_ids].map do |date_id|
+          { 
+            schedule_member_id: schedule_member.id, 
+            schedule_date_id: date_id, 
+            created_at: current_time, 
+            updated_at: current_time 
+          }
+        end
+        ScheduleMemberScheduleDate.insert_all!(schedule_member_schedule_dates)
+      else
+        return render json: { message: "Validation Error", errors: schedule_member.errors.full_messages }, status: 400
+      end
     end
+    render json: schedule.to_json
   end
 end
