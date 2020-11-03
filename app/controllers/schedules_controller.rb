@@ -15,7 +15,6 @@ class SchedulesController < ApplicationController
 
   def create
     schedule = Schedule.new(title: params[:title])
-
     ActiveRecord::Base.transaction do
       if schedule.save
         current_time = Time.current
@@ -28,7 +27,13 @@ class SchedulesController < ApplicationController
       end
     end
     render json: schedule.to_json
-  rescue => error
-    render json: { message: "Server Error", errors: [] }, status: 500
+  end
+
+  def answer
+    schedule = Schedule.find(params[:id])
+
+    ActiveRecord::Base.transaction do
+      
+    end
   end
 end
