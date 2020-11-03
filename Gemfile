@@ -55,3 +55,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg'
 gem 'dotenv-rails'
 gem 'rack-cors'
+gem 'rails-i18n'

@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    attributes:
+      schedule:
+        title: イベント名
+      schedule_member:
+        name: 名前
